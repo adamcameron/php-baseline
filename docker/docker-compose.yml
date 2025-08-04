@@ -1,6 +1,5 @@
 services:
   nginx:
-    container_name: nginx
     build:
       context: nginx
       dockerfile: Dockerfile
@@ -18,10 +17,9 @@ services:
       - host.docker.internal:host-gateway
 
   php:
-    container_name: php
     build:
-      context: php
-      dockerfile: Dockerfile
+      context: ..
+      dockerfile: docker/php/Dockerfile
 
     env_file:
       - mariadb/envVars.public
@@ -44,7 +42,6 @@ services:
       - mariadb_password
 
   mariadb:
-    container_name: mariadb
     build:
       context: mariadb
       dockerfile: Dockerfile
